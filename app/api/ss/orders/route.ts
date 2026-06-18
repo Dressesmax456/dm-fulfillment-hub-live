@@ -10,7 +10,7 @@ export async function POST(req: Request) {
   console.log("ORDER RECEIVED", body);
 
   const response = await fetch(
-    "https://api.ssactivewear.com/V2/Products/?style=PC55",
+    "https://api.ssactivewear.com/V2/Products/?sku=B00060706",
     {
       method: "GET",
       headers: {
