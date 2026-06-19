@@ -31,7 +31,9 @@ body: JSON.stringify(body),
 
   const text = await response.text();
 
-  console.log("SS RESPONSE", response.status, text);
+  console.log("SS STATUS", response.status);
+console.log("SS HEADERS", Object.fromEntries(response.headers.entries()));
+console.log("SS BODY", text);
 
   return NextResponse.json({
   success: true,
