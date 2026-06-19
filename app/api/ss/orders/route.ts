@@ -9,7 +9,6 @@ export async function POST(req: Request) {
 
   console.log("ORDER RECEIVED", body);
   console.log("ORDER PAYLOAD", body);
-  console.log("TEST DEPLOYMENT 12345");
 
   const response = await fetch(
   "https://api.ssactivewear.com/v2/orders/",
