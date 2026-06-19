@@ -8,20 +8,24 @@ export async function POST(req: Request) {
   const apiKey = process.env.SS_API_KEY;
 
   console.log("ORDER RECEIVED", body);
-  console.log("SKU SENT TO SS", body.lines[0].sku);
+  console.log("ORDER PAYLOAD", body);
 
   const response = await fetch(
-    `https://api.ssactivewear.com/V2/Products/${body.lines[0].sku}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization:
-          "Basic " +
-          Buffer.from(
-            `${username}:${apiKey}`
-          ).toString("base64"),
-      },
-    }
+  "https://api.ssactivewear.com/v2/orders/",
+  {
+    method: "POST",
+    headers: {
+      Authorization:
+        "Basic " +
+        Buffer.from(
+          `${username}:${apiKey}`
+        ).toString("base64"),
+
+      "Content-Type": "application/json",
+    },
+
+    body: JSON.stringify(body),
+  }
   );
 
   const text = await response.text();
@@ -31,7 +35,7 @@ export async function POST(req: Request) {
   return NextResponse.json({
   success: true,
   status: response.status,
-  sku: body.lines[0].sku,
+  payload: body,
   ssResponse: text,
 });
 }

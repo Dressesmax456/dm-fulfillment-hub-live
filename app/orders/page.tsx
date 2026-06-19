@@ -128,16 +128,21 @@ const [orderResult, setOrderResult] = useState("");
 
   const orderLines = (order.skus || []).map(
     (sku: string, index: number) => ({
-      sku: extractBaseSku(sku),
+      identifier: extractBaseSku(sku),
       qty: order.quantities?.[index] || 1,
     })
   );
 
   return {
-    poNumber: order["order-id"],
-    dropship,
+  poNumber: order["order-id"],
 
-    shippingAddress: {
+  shippingMethod: "1",
+
+  autoselectWarehouse: true,
+
+  testOrder: true,
+
+  shippingAddress: {
       customer: order["recipient-name"],
       address: order["ship-address-1"],
       city: order["ship-city"],
