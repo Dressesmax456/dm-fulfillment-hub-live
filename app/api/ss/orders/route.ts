@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   console.log("ORDER PAYLOAD", body);
 
   const response = await fetch(
-  "https://api.ssactivewear.com/V2/paymentprofile",
+  "https://api.ssactivewear.com/V2/PaymentProfiles.aspx",
   {
     method: "GET",
     headers: {
