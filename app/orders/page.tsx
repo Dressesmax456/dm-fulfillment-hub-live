@@ -270,10 +270,13 @@ const [orderResult, setOrderResult] = useState("");
         );
         console.log(
   "SS PAYLOAD",
-  prepareSSOrder(
-    ordersToPlace[0],
-    true
-  )
+  ordersToPlace.map(
+  (order) =>
+    prepareSSOrder(
+      order,
+      true
+    )
+)
 );
 
         const response = await fetch(
@@ -284,15 +287,23 @@ const [orderResult, setOrderResult] = useState("");
       "Content-Type": "application/json",
     },
     body: JSON.stringify(
+  ordersToPlace.map(
+    (order) =>
       prepareSSOrder(
-        ordersToPlace[0],
+        order,
         true
       )
-    ),
+  )
+),
   }
 );
 
 const data = await response.json();
+
+console.log(
+  "SS MULTI ORDER RESPONSE",
+  data
+);
 
 alert(
   JSON.stringify(data, null, 2)
@@ -321,10 +332,13 @@ alert(
 
         console.log(
   "SS PICKUP PAYLOAD",
-  prepareSSOrder(
-    ordersToPlace[0],
-    false
-  )
+  ordersToPlace.map(
+  (order) =>
+    prepareSSOrder(
+      order,
+      false
+    )
+)
 );
 
         const response = await fetch(
@@ -335,11 +349,14 @@ alert(
       "Content-Type": "application/json",
     },
     body: JSON.stringify(
+  ordersToPlace.map(
+    (order) =>
       prepareSSOrder(
-        ordersToPlace[0],
-        true
+        order,
+        false
       )
-    ),
+  )
+),
   }
 );
 
