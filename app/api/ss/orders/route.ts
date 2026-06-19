@@ -11,9 +11,9 @@ export async function POST(req: Request) {
   console.log("ORDER PAYLOAD", body);
 
   const response = await fetch(
-  "https://api.ssactivewear.com/v2/orders/",
+  "https://api.ssactivewear.com/V2/paymentprofile",
   {
-    method: "POST",
+    method: "GET",
     headers: {
       Authorization:
         "Basic " +
@@ -21,10 +21,8 @@ export async function POST(req: Request) {
           `${username}:${apiKey}`
         ).toString("base64"),
 
-      "Content-Type": "application/json",
     },
 
-    body: JSON.stringify(body),
   }
   );
 
