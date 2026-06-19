@@ -11,7 +11,7 @@ export async function POST(req: Request) {
   console.log("SKU SENT TO SS", body.lines[0].sku);
 
   const response = await fetch(
-    `https://api.ssactivewear.com/V2/Products/?sku=${body.lines[0].sku}`,
+    `https://api.ssactivewear.com/V2/Products/${body.lines[0].sku}`,
     {
       method: "GET",
       headers: {
