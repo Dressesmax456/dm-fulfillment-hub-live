@@ -11,17 +11,19 @@ export async function POST(req: Request) {
   console.log("ORDER PAYLOAD", body);
 
   const response = await fetch(
-  `https://api.ssactivewear.com/v2/paymentprofiles/?email=info@dressesmax.com&mediatype=json`,
+  "https://api.ssactivewear.com/v2/orders/",
   {
-    method: "GET",
+    method: "POST",
     headers: {
-      Authorization:
-        "Basic " +
-        Buffer.from(
-          `${username}:${apiKey}`
-        ).toString("base64"),
+  Authorization:
+    "Basic " +
+    Buffer.from(
+      `${username}:${apiKey}`
+    ).toString("base64"),
 
-    },
+  "Content-Type": "application/json",
+},
+body: JSON.stringify(body),
 
   }
   );
