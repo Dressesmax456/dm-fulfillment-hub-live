@@ -9,6 +9,7 @@ export async function POST(req: Request) {
 
   console.log("ORDER RECEIVED", body);
   console.log("ORDER PAYLOAD", body);
+  console.log("TEST DEPLOYMENT 12345");
 
   const response = await fetch(
   "https://api.ssactivewear.com/v2/orders/",
@@ -34,6 +35,7 @@ body: JSON.stringify(body),
 
   return NextResponse.json({
   success: true,
+  test: "DEPLOYMENT-12345",
   status: response.status,
   payload: body,
   ssResponse: text,
