@@ -279,23 +279,39 @@ const [orderResult, setOrderResult] = useState("");
 )
 );
 
-        const response = await fetch(
-  "/api/ss/orders",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(
-  ordersToPlace.map(
-    (order) =>
-      prepareSSOrder(
-        order,
-        true
-      )
+        const results = [];
+
+for (const order of ordersToPlace) {
+
+  const response = await fetch(
+    "/api/ss/orders",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(
+        prepareSSOrder(
+          order,
+          true
+        )
+      ),
+    }
+  );
+
+  const data = await response.json();
+
+  results.push(data);
+}
+
+
+alert(
+  JSON.stringify(
+    results,
+    null,
+    2
   )
-),
-  }
 );
 
 const data = await response.json();
@@ -348,15 +364,40 @@ alert(
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(
-  ordersToPlace.map(
-    (order) =>
-      prepareSSOrder(
-        order,
-        false
-      )
+    const results = [];
+
+for (const order of ordersToPlace) {
+
+  const response = await fetch(
+    "/api/ss/orders",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(
+        prepareSSOrder(
+          order,
+          false
+        )
+      ),
+    }
+  );
+
+  const data = await response.json();
+
+  results.push(data);
+}
+
+
+alert(
+  JSON.stringify(
+    results,
+    null,
+    2
   )
-),
+);
   }
 );
 
