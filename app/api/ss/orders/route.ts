@@ -8,6 +8,7 @@ export async function POST(req: Request) {
   const apiKey = process.env.SS_API_KEY;
 
   console.log("ORDER RECEIVED", body);
+  console.log("SKU SENT TO SS", body.lines[0].sku);
 
   const response = await fetch(
     `https://api.ssactivewear.com/V2/Products/?sku=${body.lines[0].sku}`,
@@ -28,8 +29,9 @@ export async function POST(req: Request) {
   console.log("SS RESPONSE", response.status, text);
 
   return NextResponse.json({
-    success: true,
-    status: response.status,
-    ssResponse: text,
-  });
+  success: true,
+  status: response.status,
+  sku: body.lines[0].sku,
+  ssResponse: text,
+});
 }
