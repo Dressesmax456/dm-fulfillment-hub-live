@@ -314,16 +314,6 @@ alert(
   )
 );
 
-const data = await response.json();
-
-console.log(
-  "SS MULTI ORDER RESPONSE",
-  data
-);
-
-alert(
-  JSON.stringify(data, null, 2)
-);
       }}
       style={{
         background: "#22C55E",
@@ -340,73 +330,59 @@ alert(
 
 
     <button
-      onClick={async () => {
-        const ordersToPlace = rows.filter(
-          (row) =>
-            selectedOrders.includes(row["order-id"])
-        );
+  onClick={async () => {
+    const ordersToPlace = rows.filter(
+      (row) =>
+        selectedOrders.includes(row["order-id"])
+    );
 
-        console.log(
-  "SS PICKUP PAYLOAD",
-  ordersToPlace.map(
-  (order) =>
-    prepareSSOrder(
-      order,
-      false
-    )
-)
-);
+    console.log(
+      "SS PICKUP PAYLOAD",
+      ordersToPlace.map(
+        (order) =>
+          prepareSSOrder(
+            order,
+            false
+          )
+      )
+    );
 
-        const response = await fetch(
-  "/api/ss/orders",
-  {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
     const results = [];
 
-for (const order of ordersToPlace) {
+    for (const order of ordersToPlace) {
 
-  const response = await fetch(
-    "/api/ss/orders",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+      const response = await fetch(
+        "/api/ss/orders",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
 
-      body: JSON.stringify(
-        prepareSSOrder(
-          order,
-          false
-        )
-      ),
+          body: JSON.stringify(
+            prepareSSOrder(
+              order,
+              false
+            )
+          ),
+        }
+      );
+
+      const data = await response.json();
+
+      results.push(data);
     }
-  );
-
-  const data = await response.json();
-
-  results.push(data);
-}
 
 
-alert(
-  JSON.stringify(
-    results,
-    null,
-    2
-  )
-);
-  }
-);
+    alert(
+      JSON.stringify(
+        results,
+        null,
+        2
+      )
+    );
 
-const data = await response.json();
-
-alert(
-  JSON.stringify(data, null, 2)
-);
-      }}
+  }}
       style={{
         background: "#F59E0B",
         color: "white",
